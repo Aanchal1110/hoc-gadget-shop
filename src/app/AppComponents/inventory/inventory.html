@@ -1,12 +1,13 @@
-<div class="container mt-4">
+<div class="mx-3 my-2">
+  <h1>Inventory</h1>
+</div>
 
-  <h2>Inventory</h2>
-
-  <!-- FORM -->
-  <form class="mt-3">
+<div class="row mx-3">
+  <form class="row gx-3 gy-2 align-items-center"
+        (ngSubmit)="onSubmit()" #form="ngForm" novalidate>
 
     <!-- LABEL ROW -->
-    <div class="row mb-1">
+    <div class="row">
       <div class="col-sm-3">
         <label>Product Id</label>
       </div>
@@ -22,88 +23,57 @@
     </div>
 
     <!-- INPUT ROW -->
-    <div class="row g-2 align-items-center">
+    <div class="row">
 
+      <!-- Product Id -->
       <div class="col-sm-3">
-        <input type="text" class="form-control" placeholder="1001">
+        <label class="visually-hidden">Product Id</label>
+        <input type="text"
+               class="form-control"
+               placeholder="1001"
+               name="productId"
+               [(ngModel)]="inventory.productID" name="productId">
       </div>
 
+      <!-- Product Name -->
       <div class="col-sm-3">
-        <select class="form-select">
-          <option selected>Choose...</option>
-          <option value="1">Laptop</option>
-          <option value="2">Mobile</option>
+        <label class="visually-hidden">Product</label>
+        <select class="form-select"
+                name="productName"
+                [(ngModel)]="inventory.productName">
+          <option value="">Choose...</option>
+          <option value="Earphones">Earphones</option>
+          <option value="Mobiles">Mobiles</option>
+          <option value="Playstation">Playstation</option>
         </select>
       </div>
 
+      <!-- Quantity -->
       <div class="col-sm-3">
-        <input type="number" class="form-control" placeholder="0">
+        <label class="visually-hidden">Quantity</label>
+        <input type="number"
+               class="form-control"
+               placeholder="0"
+               name="quantity"
+               [(ngModel)]="inventory.availableQty">
       </div>
 
+      <!-- Reorder -->
       <div class="col-sm-3">
-        <input type="number" class="form-control" placeholder="0">
+        <label class="visually-hidden">Reorder</label>
+        <input type="number"
+               class="form-control"
+               placeholder="0"
+               name="reorder"
+               [(ngModel)]="inventory.reorderPoint">
       </div>
 
     </div>
 
     <!-- BUTTON -->
     <div class="mt-3">
-      <button class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 
   </form>
-
-  <!-- TABLE -->
-  <div class="mt-4">
-    <h5>Inventory Details</h5>
-
-    <table class="table table-striped table-bordered mt-2">
-      <thead class="table-light">
-        <tr>
-          <th>#</th>
-          <th>Product Id</th>
-          <th>Stock Available</th>
-          <th>Reorder Point</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>1001</td>
-          <td>130</td>
-          <td>50</td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>1002</td>
-          <td>200</td>
-          <td>60</td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>1003</td>
-          <td>600</td>
-          <td>50</td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-
-    </table>
-  </div>
-
 </div>
