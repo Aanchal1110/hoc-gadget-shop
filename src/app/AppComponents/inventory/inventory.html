@@ -1,1 +1,109 @@
-<p>inventory works!</p>
+<div class="container mt-4">
+
+  <h2>Inventory</h2>
+
+  <!-- FORM -->
+  <form class="mt-3">
+
+    <!-- LABEL ROW -->
+    <div class="row mb-1">
+      <div class="col-sm-3">
+        <label>Product Id</label>
+      </div>
+      <div class="col-sm-3">
+        <label>Product Name</label>
+      </div>
+      <div class="col-sm-3">
+        <label>Quantity Available</label>
+      </div>
+      <div class="col-sm-3">
+        <label>Reorder Point</label>
+      </div>
+    </div>
+
+    <!-- INPUT ROW -->
+    <div class="row g-2 align-items-center">
+
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="1001">
+      </div>
+
+      <div class="col-sm-3">
+        <select class="form-select">
+          <option selected>Choose...</option>
+          <option value="1">Laptop</option>
+          <option value="2">Mobile</option>
+        </select>
+      </div>
+
+      <div class="col-sm-3">
+        <input type="number" class="form-control" placeholder="0">
+      </div>
+
+      <div class="col-sm-3">
+        <input type="number" class="form-control" placeholder="0">
+      </div>
+
+    </div>
+
+    <!-- BUTTON -->
+    <div class="mt-3">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+
+  </form>
+
+  <!-- TABLE -->
+  <div class="mt-4">
+    <h5>Inventory Details</h5>
+
+    <table class="table table-striped table-bordered mt-2">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Product Id</th>
+          <th>Stock Available</th>
+          <th>Reorder Point</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1001</td>
+          <td>130</td>
+          <td>50</td>
+          <td>
+            <button class="btn btn-primary btn-sm me-2">Edit</button>
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>1002</td>
+          <td>200</td>
+          <td>60</td>
+          <td>
+            <button class="btn btn-primary btn-sm me-2">Edit</button>
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>1003</td>
+          <td>600</td>
+          <td>50</td>
+          <td>
+            <button class="btn btn-primary btn-sm me-2">Edit</button>
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
