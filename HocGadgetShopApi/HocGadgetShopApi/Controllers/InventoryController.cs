@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System.Data.Common;
 
 namespace HocGadgetShopApi.Controllers
@@ -13,7 +14,7 @@ namespace HocGadgetShopApi.Controllers
         {
             SqlConnection connection=new SqlConnection
             {
-                DbConnectionStringBuilder=""
+                Connec
             }
         }
     }
