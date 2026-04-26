@@ -37,5 +37,45 @@ namespace HocGadgetShopApi.Controllers
 
       return Ok();
     }
+
+
+    [HttpGet]
+    public ActionResult GetInventory()
+    {
+      SqlConnection connection = new SqlConnection
+      {
+        ConnectionString = "Server=localhost;Database=gadgetshop;User Id=aanchal;Password=1105;TrustServerCertificate=True;"
+
+      };
+
+      SqlCommand command = new SqlCommand
+      {
+        CommandText = "sp_GetInventoryData",
+        CommandType = System.Data.CommandType.StoredProcedure,
+        Connection = connection
+      };
+      
+
+      connection.Open();
+
+      List<InventoryDto> response = new List<InventoryDto>();
+
+      using (SqlDataReader sqlDataReader = command.ExecuteReader())
+      {
+        while (sqlDataReader.Read())
+        {
+          InventoryDto inventoryDto = new InventoryDto();
+          inventoryDto.ProductId = Convert.ToInt32(sqlDataReader["ProductId"]);
+          inventoryDto.ProductName = Convert.ToString(sqlDataReader["ProductName"])??"";
+          inventoryDto.AvailableQty = Convert.ToInt32(sqlDataReader["AvailableQty"]);
+          inventoryDto.ReOrderPoint = Convert.ToInt32(sqlDataReader["ReOrderPoint"]);
+
+          response.Add(inventoryDto);
+        }
+      }
+        connection.Close();
+
+        return Ok(response);
     }
+  }
 }
