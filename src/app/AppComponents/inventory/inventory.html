@@ -32,7 +32,7 @@
                class="form-control"
                placeholder="1001"
                name="productId"
-               [(ngModel)]="inventory.productID" name="productId">
+               [(ngModel)]="inventoryData.productID" name="productId">
       </div>
 
       <!-- Product Name -->
@@ -40,7 +40,7 @@
         <label class="visually-hidden">Product</label>
         <select class="form-select"
                 name="productName"
-                [(ngModel)]="inventory.productName">
+                [(ngModel)]="inventoryData.productName">
           <option value="">Choose...</option>
           <option value="Earphones">Earphones</option>
           <option value="Mobiles">Mobiles</option>
@@ -55,7 +55,7 @@
                class="form-control"
                placeholder="0"
                name="quantity"
-               [(ngModel)]="inventory.availableQty">
+               [(ngModel)]="inventoryData.availableQty">
       </div>
 
       <!-- Reorder -->
@@ -65,7 +65,7 @@
                class="form-control"
                placeholder="0"
                name="reorder"
-               [(ngModel)]="inventory.reorderPoint">
+               [(ngModel)]="inventoryData.reorderPoint">
       </div>
 
     </div>

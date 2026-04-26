@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 
 @Component({
@@ -9,8 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './inventory.css',
 })
 export class Inventory {
+  httpClient=inject(HttpClient)
 
-  inventory={
+  inventoryData={
     productID:"",
     productName:"",
     availableQty:0,
@@ -18,6 +21,22 @@ export class Inventory {
   }
 
   onSubmit():void{
-    alert("Form submitted successfully"+JSON.stringify(this.inventory));
+   let apiUrl = "http://localhost:5113/api/Inventory";
+    let httpOptions={
+      headers: new HttpHeaders({
+        Authorization:"my-auth-token",
+        'Content-Type':"application/json"
+      })
+    }
+    this.httpClient.post(apiUrl,this.inventoryData,httpOptions).subscribe({
+      next:v=> console.log(v),
+      error:e=>console.log(e),
+      complete:()=> {
+          alert("Form submitted successfully"+JSON.stringify(this.inventoryData));
+      },
+
+    })
+
+
   }
 }
