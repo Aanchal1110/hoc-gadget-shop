@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data.Common;
 
+
 namespace HocGadgetShopApi.Controllers
 {
     [Route("api/[controller]")]
@@ -34,7 +35,7 @@ namespace HocGadgetShopApi.Controllers
       command.ExecuteNonQuery();
       connection.Close();
 
-      return Ok("Inventory Details saved successfully");
+      return Ok();
     }
     }
 }
