@@ -21,11 +21,11 @@ export class Inventory {
   }
 
   onSubmit():void{
-    let apiUrl="https://localhost:7138/api/Inventory";
+   let apiUrl = "http://localhost:5113/api/Inventory";
     let httpOptions={
       headers: new HttpHeaders({
         Authorization:"my-auth-token",
-        'Content-Type':"applicationn/json"
+        'Content-Type':"application/json"
       })
     }
     this.httpClient.post(apiUrl,this.inventoryData,httpOptions).subscribe({
