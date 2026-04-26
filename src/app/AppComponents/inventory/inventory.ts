@@ -19,6 +19,15 @@ export class Inventory {
     availableQty:0,
     reorderPoint:0
   }
+  inventoryDetails:any;
+
+  ngOnInit() {
+    let apiUrl = "http://localhost:5113/api/Inventory";
+    this.httpClient.get(apiUrl).subscribe(data=>{
+      this.inventoryDetails=data;
+      console.log(this.inventoryDetails);
+    })
+  }
 
   onSubmit():void{
    let apiUrl = "http://localhost:5113/api/Inventory";
