@@ -2,6 +2,7 @@ using HocGadgetShopApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Newtonsoft.Json;
 using System.Data.Common;
 
 
@@ -77,5 +78,34 @@ namespace HocGadgetShopApi.Controllers
 
         return Ok(response);
     }
+
+    [HttpDelete]
+    public ActionResult DeleteInventory(int id)
+    {
+      SqlConnection connection = new SqlConnection
+      {
+        ConnectionString = "Server=localhost;Database=gadgetshop;User Id=aanchal;Password=1105;TrustServerCertificate=True;"
+
+      };
+
+      SqlCommand command = new SqlCommand
+      {
+        CommandText = "sp_DeleteInventoryDetails",
+        CommandType = System.Data.CommandType.StoredProcedure,
+        Connection = connection
+      };
+
+
+      connection.Open();
+
+      command.Parameters.AddWithValue("@ProductId", id);
+
+      command.ExecuteNonQuery();
+      
+      connection.Close();
+
+      return Ok();
+    }
+
   }
 }
