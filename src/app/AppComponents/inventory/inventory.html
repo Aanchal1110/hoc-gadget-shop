@@ -91,19 +91,18 @@
   </thead>
 
   <tbody>
-  @for (inventory of inventoryDetails; track inventory.productId; let i = $index) {
-    <tr>
-      <td>{{ i + 1 }}</td>
-      <td>{{ inventory.productId }}</td>
-      <td>{{ inventory.productName }}</td>
-      <td>{{ inventory.availableQty }}</td>
-      <td>{{ inventory.reOrderPoint }}</td>
-      <td>
-        <button class="btn btn-primary btn-sm">Edit</button>
-        <button class="btn btn-danger btn-sm mx-2">Delete</button>
-      </td>
-    </tr>
-  }
+  @for (inventory of inventoryDetails; track inventory.ProductId; let i = $index) {
+  <tr>
+    <td>{{ inventory.ProductId }}</td>
+<td>{{ inventory.ProductName }}</td>
+<td>{{ inventory.AvailableQty }}</td>
+<td>{{ inventory.ReOrderPoint }}</td>
+    <td>
+      <button class="btn btn-primary btn-sm">Edit</button>
+      <button class="btn btn-danger btn-sm mx-2">Delete</button>
+    </td>
+  </tr>
+}
 </tbody>
 
 </table>

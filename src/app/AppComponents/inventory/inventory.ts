@@ -43,6 +43,7 @@ export class Inventory {
       error:e=>console.log(e),
       complete:()=> {
           alert("Form submitted successfully"+JSON.stringify(this.inventoryData));
+          this.ngOnInit();
       },
 
     })
