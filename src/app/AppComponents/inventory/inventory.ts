@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-inventory',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './inventory.html',
   styleUrl: './inventory.css',
 })
@@ -17,7 +18,7 @@ export class Inventory {
     productID:"",
     productName:"",
     availableQty:0,
-    reorderPoint:0
+    reOrderPoint:0
   }
   inventoryDetails:any;
 

@@ -65,7 +65,7 @@
                class="form-control"
                placeholder="0"
                name="reorder"
-               [(ngModel)]="inventoryData.reorderPoint">
+               [(ngModel)]="inventoryData.reOrderPoint">
       </div>
 
     </div>
@@ -77,3 +77,33 @@
 
   </form>
 </div>
+<table class="table table-striped">
+  
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Product Id</th>
+      <th>Product Name</th>
+      <th>Available Qty</th>
+      <th>Reorder Point</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  @for (inventory of inventoryDetails; track inventory.productId; let i = $index) {
+    <tr>
+      <td>{{ i + 1 }}</td>
+      <td>{{ inventory.productId }}</td>
+      <td>{{ inventory.productName }}</td>
+      <td>{{ inventory.availableQty }}</td>
+      <td>{{ inventory.reOrderPoint }}</td>
+      <td>
+        <button class="btn btn-primary btn-sm">Edit</button>
+        <button class="btn btn-danger btn-sm mx-2">Delete</button>
+      </td>
+    </tr>
+  }
+</tbody>
+
+</table>
