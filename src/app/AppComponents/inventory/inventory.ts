@@ -14,6 +14,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class Inventory {
   httpClient = inject(HttpClient);
   cdr = inject(ChangeDetectorRef); 
+  productIdTodelete:number=0;
   
   private modalService= inject(NgbModal)
 
@@ -62,7 +63,10 @@ export class Inventory {
     });
   }
 
-  openConfirmDialog(){
+  openConfirmDialog(productId: number){
+    this.productIdTodelete=productId;
+    console.log("Product ID to delete:", this.productIdTodelete);
+
     this.modalService.open(DialogBox);
   }
 }
