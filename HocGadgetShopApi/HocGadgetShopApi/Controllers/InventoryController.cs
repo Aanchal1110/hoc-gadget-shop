@@ -107,5 +107,36 @@ namespace HocGadgetShopApi.Controllers
       return Ok();
     }
 
+    [HttpPut]
+    public ActionResult UpdateInventoryData(InventoryRequestDto inventoryRequestDto)
+    {
+      SqlConnection connection = new SqlConnection
+      {
+        ConnectionString = "Server=localhost;Database=gadgetshop;User Id=aanchal;Password=1105;TrustServerCertificate=True;"
+
+      };
+
+      SqlCommand command = new SqlCommand
+      {
+        CommandText = "sp_UpdateInventoryData",
+        CommandType = System.Data.CommandType.StoredProcedure,
+        Connection = connection
+      };
+
+
+      connection.Open();
+
+      command.Parameters.AddWithValue("@ProductId", inventoryRequestDto.ProductId);
+      command.Parameters.AddWithValue("@ProductName", inventoryRequestDto.ProductName);
+      command.Parameters.AddWithValue("@AvailableQty", inventoryRequestDto.AvailableQty);
+      command.Parameters.AddWithValue("@ReOrderPoint", inventoryRequestDto.ReOrderPoint);
+
+      command.ExecuteNonQuery();
+
+      connection.Close();
+
+      return Ok();
+    }
+
   }
 }
