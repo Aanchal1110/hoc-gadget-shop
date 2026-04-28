@@ -83,5 +83,13 @@ export class Inventory {
       })
   }
 
+
+  populateFormForEDit(inventory:any){
+    this.inventoryData.productID=inventory.productId;
+    this.inventoryData.productName=inventory.productName;
+    this.inventoryData.availableQty=inventory.availableQty;
+    this.inventoryData.reOrderPoint=inventory.reOrderPoint; 
+
+  }
 }
 
