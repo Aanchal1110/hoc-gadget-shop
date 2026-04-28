@@ -77,6 +77,7 @@
 
   </form>
 </div>
+<pre>{{ inventoryDetails | json }}</pre>
 <table class="table table-striped">
   
   <thead>
@@ -91,12 +92,13 @@
   </thead>
 
   <tbody>
-  @for (inventory of inventoryDetails; track inventory.ProductId; let i = $index) {
+ @for (inventory of inventoryDetails; track inventory.productId; let i = $index) {
   <tr>
-    <td>{{ inventory.ProductId }}</td>
-<td>{{ inventory.ProductName }}</td>
-<td>{{ inventory.AvailableQty }}</td>
-<td>{{ inventory.ReOrderPoint }}</td>
+    <td>{{ i + 1 }}</td>
+    <td>{{ inventory.productId }}</td>      <!-- lowercase p -->
+    <td>{{ inventory.productName }}</td>    <!-- lowercase p -->
+    <td>{{ inventory.availableQty }}</td>   <!-- lowercase a -->
+    <td>{{ inventory.reOrderPoint }}</td>   <!-- lowercase r, capital O -->
     <td>
       <button class="btn btn-primary btn-sm">Edit</button>
       <button class="btn btn-danger btn-sm mx-2">Delete</button>

@@ -1,9 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
-
 
 @Component({
   selector: 'app-inventory',
@@ -12,42 +10,51 @@ import { CommonModule } from '@angular/common';
   styleUrl: './inventory.css',
 })
 export class Inventory {
-  httpClient=inject(HttpClient)
+  httpClient = inject(HttpClient);
+  cdr = inject(ChangeDetectorRef);        // ← added here, same level as httpClient
 
-  inventoryData={
-    productID:"",
-    productName:"",
-    availableQty:0,
-    reOrderPoint:0
+  inventoryData = {
+    productID: "",
+    productName: "",
+    availableQty: 0,
+    reOrderPoint: 0
+  };
+
+  inventoryDetails: any[] = [];
+
+  loadInventory() {
+    let apiUrl = "http://localhost:5113/api/Inventory";
+    this.httpClient.get(apiUrl).subscribe({
+      next: (data: any) => {
+        this.inventoryDetails = data;
+        this.cdr.detectChanges();         // ← added here, forces screen to update
+        console.log('Data loaded:', this.inventoryDetails);
+      },
+      error: (e) => {
+        console.log('Error:', e);
+      }
+    });
   }
-  inventoryDetails:any;
 
   ngOnInit() {
-    let apiUrl = "http://localhost:5113/api/Inventory";
-    this.httpClient.get(apiUrl).subscribe(data=>{
-      this.inventoryDetails=data;
-      console.log(this.inventoryDetails);
-    })
+    this.loadInventory();
   }
 
-  onSubmit():void{
-   let apiUrl = "http://localhost:5113/api/Inventory";
-    let httpOptions={
+  onSubmit(): void {
+    let apiUrl = "http://localhost:5113/api/Inventory";
+    let httpOptions = {
       headers: new HttpHeaders({
-        Authorization:"my-auth-token",
-        'Content-Type':"application/json"
+        Authorization: "my-auth-token",
+        'Content-Type': "application/json"
       })
-    }
-    this.httpClient.post(apiUrl,this.inventoryData,httpOptions).subscribe({
-      next:v=> console.log(v),
-      error:e=>console.log(e),
-      complete:()=> {
-          alert("Form submitted successfully"+JSON.stringify(this.inventoryData));
-          this.ngOnInit();
-      },
-
-    })
-
-
+    };
+    this.httpClient.post(apiUrl, this.inventoryData, httpOptions).subscribe({
+      next: v => console.log(v),
+      error: e => console.log(e),
+      complete: () => {
+        alert("Form submitted successfully!");
+        this.loadInventory();
+      }
+    });
   }
 }
