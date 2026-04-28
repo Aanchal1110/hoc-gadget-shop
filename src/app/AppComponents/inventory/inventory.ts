@@ -67,6 +67,21 @@ export class Inventory {
     this.productIdTodelete=productId;
     console.log("Product ID to delete:", this.productIdTodelete);
 
-    this.modalService.open(DialogBox);
+    this.modalService.open(DialogBox).result.then(data=>{
+      console.log("data");
+      if(data.event=="confirm"){
+        this.deleteInventory();
+
+      }
+    });
   }
+
+    deleteInventory(){
+      let apiUrl=`http://localhost:5113/api/Inventory?id=${this.productIdTodelete}`;
+      this.httpClient.delete(apiUrl).subscribe(data=>{
+        this.loadInventory();
+      })
+  }
+
 }
+

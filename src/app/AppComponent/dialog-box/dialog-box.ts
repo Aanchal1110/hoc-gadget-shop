@@ -10,7 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class DialogBox {
   modal=inject(NgbActiveModal);
   confirm(){
-    this.modal.close();
+    this.modal.close({event:"confirm"});
   }
 
 }
