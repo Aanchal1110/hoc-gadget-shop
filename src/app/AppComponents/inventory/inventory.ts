@@ -1,7 +1,9 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, ChangeDetectorRef, Inject } from '@angular/core';
+import { FormsModule, NgModel } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { DialogBox } from '../../AppComponent/dialog-box/dialog-box';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-inventory',
@@ -11,7 +13,9 @@ import { CommonModule } from '@angular/common';
 })
 export class Inventory {
   httpClient = inject(HttpClient);
-  cdr = inject(ChangeDetectorRef);        // ← added here, same level as httpClient
+  cdr = inject(ChangeDetectorRef); 
+  
+  private modalService= inject(NgbModal)
 
   inventoryData = {
     productID: "",
@@ -56,5 +60,9 @@ export class Inventory {
         this.loadInventory();
       }
     });
+  }
+
+  openConfirmDialog(){
+    this.modalService.open(DialogBox);
   }
 }
