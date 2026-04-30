@@ -30,7 +30,7 @@
         <label class="visually-hidden">Product Id</label>
         <input type="text"
                class="form-control"
-               placeholder="1001"
+               placeholder="1001" [disabled]="disabledProductId"
                name="productId"
                [(ngModel)]="inventoryData.productID" name="productId">
       </div>

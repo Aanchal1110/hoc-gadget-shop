@@ -15,6 +15,7 @@ export class Inventory {
   httpClient = inject(HttpClient);
   cdr = inject(ChangeDetectorRef); 
   productIdTodelete:number=0;
+  disabledProductId=false;
   
   private modalService= inject(NgbModal)
 
@@ -39,6 +40,14 @@ export class Inventory {
         console.log('Error:', e);
       }
     });
+    this.inventoryData = {
+    productID: "",
+    productName: "",
+    availableQty: 0,
+    reOrderPoint: 0
+    
+  };
+  this.disabledProductId=false;
   }
 
   ngOnInit() {
@@ -53,6 +62,19 @@ export class Inventory {
         'Content-Type': "application/json"
       })
     };
+    if(this.disabledProductId==true){
+      this.httpClient.put(apiUrl, this.inventoryData, httpOptions).subscribe({
+        next: v => console.log(v),
+        error: e => console.log(e),
+        complete: () => {
+          alert("Form updated successfully!");
+          this.loadInventory();
+        }
+      });
+      return;
+    }
+else{
+
     this.httpClient.post(apiUrl, this.inventoryData, httpOptions).subscribe({
       next: v => console.log(v),
       error: e => console.log(e),
@@ -62,6 +84,7 @@ export class Inventory {
       }
     });
   }
+}
 
   openConfirmDialog(productId: number){
     this.productIdTodelete=productId;
@@ -89,7 +112,7 @@ export class Inventory {
     this.inventoryData.productName=inventory.productName;
     this.inventoryData.availableQty=inventory.availableQty;
     this.inventoryData.reOrderPoint=inventory.reOrderPoint; 
-
+    this.disabledProductId=true;
   }
 }
 
