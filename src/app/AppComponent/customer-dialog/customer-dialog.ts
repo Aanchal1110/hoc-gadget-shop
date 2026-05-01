@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { email } from '@angular/forms/signals';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { first } from 'rxjs';
 
 @Component({
@@ -13,6 +14,8 @@ import { first } from 'rxjs';
 })
 export class CustomerDialog {
   httpClient=inject(HttpClient)
+
+  modal=inject(NgbActiveModal)
 
   customer={
     customerId:"",
@@ -38,6 +41,7 @@ this.httpClient.post(apiUrl, this.customer, httpOptions).subscribe({
   complete:()=>
   {
     alert("Customer details saved successfully: "+JSON.stringify(this.customer));
+    this.modal.close();
 }
 });
 }
