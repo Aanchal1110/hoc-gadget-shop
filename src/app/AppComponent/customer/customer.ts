@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerDialog } from '../customer-dialog/customer-dialog';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { DialogBox } from '../dialog-box/dialog-box';
 
 @Component({
   selector: 'app-customer',
@@ -38,5 +39,9 @@ export class Customer {
     }
 
     )
+
+  }
+  openConfirmDialog(){
+    this.modalService.open(DialogBox);
   }
 }
