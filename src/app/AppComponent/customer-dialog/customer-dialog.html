@@ -1,1 +1,72 @@
-<p>customer-dialog works!</p>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+
+  <h5 class="mb-3">Customer</h5>
+
+  <!-- Row 1 -->
+  <div class="row mb-3">
+    <div class="col">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Customer Id"
+        name="customerId"
+        [(ngModel)]="customer.customerId">
+    </div>
+
+    <div class="col">
+      <input 
+        type="date" 
+        class="form-control"
+        name="registrationDate"
+        [(ngModel)]="customer.registrationDate">
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="row mb-3">
+    <div class="col">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="First name"
+        name="firstName"
+        [(ngModel)]="customer.firstName">
+    </div>
+
+    <div class="col">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Last name"
+        name="lastName"
+        [(ngModel)]="customer.lastName">
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="row mb-3">
+    <div class="col">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Phone Number"
+        name="phone"
+        [(ngModel)]="customer.phone">
+    </div>
+
+    <div class="col">
+      <input 
+        type="email" 
+        class="form-control" 
+        placeholder="Email"
+        name="email"
+        [(ngModel)]="customer.email">
+    </div>
+  </div>
+
+  <!-- Button -->
+  <button class="btn btn-primary" type="submit">
+    Add
+  </button>
+
+</form>

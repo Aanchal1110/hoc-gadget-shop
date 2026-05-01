@@ -1,86 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Customer List</title>
-
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-
 <div class="container mt-4">
 
-  <!-- Top Button -->
   <div class="mb-3">
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" (click)="openCustomerDialog()">
       Add a new Customer
     </button>
   </div>
 
-  <!-- Title -->
   <h4 class="mb-3">Customer Details</h4>
 
-  <!-- Table -->
-  <div class="table-responsive">
-    <table class="table table-striped align-middle">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Customer Id</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Registration Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-      <thead class="table-light">
-        <tr>
-          <th>Customer Id</th>
-          <th>Customer Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Registration Date</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-
-        <tr>
-          <td>1250</td>
-          <td>Rahul Dixit</td>
-          <td>rahul.dixit520@gmail.com</td>
-          <td>9876543210</td>
-          <td>2024-07-02</td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>1250</td>
-          <td>Ayesha Tripathi</td>
-          <td>ayesha.tripathi43434@gmail.com</td>
-          <td>9876543210</td>
-          <td>2024-05-02</td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>1250</td>
-          <td>Mary Gomes</td>
-          <td>mary.gomes520@gmail.com</td>
-          <td>9876543210</td>
-          <td>2024-06-02</td>
-          <td>
-            <button class="btn btn-primary btn-sm me-2">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
-
-      </tbody>
-
-    </table>
-  </div>
+    <tbody>
+      <tr>
+        <td>1250</td>
+        <td>Rahul Dixit</td>
+        <td>rahul@gmail.com</td>
+        <td>9876543210</td>
+        <td>2024-07-02</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2">Edit</button>
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
-
-</body>
-</html>
