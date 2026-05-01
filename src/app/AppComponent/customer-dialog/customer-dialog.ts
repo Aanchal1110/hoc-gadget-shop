@@ -41,7 +41,7 @@ this.httpClient.post(apiUrl, this.customer, httpOptions).subscribe({
   complete:()=>
   {
     alert("Customer details saved successfully: "+JSON.stringify(this.customer));
-    this.modal.close();
+    this.modal.close({event:"closed"});
 }
 });
 }
