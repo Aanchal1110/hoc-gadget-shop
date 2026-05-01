@@ -83,5 +83,35 @@ namespace HocGadgetShopApi.Controllers
       return Ok(JsonConvert.SerializeObject(customers));
     }
 
+
+    [HttpDelete]
+    public ActionResult DeleteCustomer(int customerId)
+    {
+      SqlConnection connection = new SqlConnection
+      {
+        ConnectionString = "Server=localhost;Database=gadgetshop;User Id=aanchal;Password=1105;TrustServerCertificate=True;"
+
+      };
+
+      SqlCommand command = new SqlCommand
+      {
+        CommandText = "sp_DeleteCustomerDetails",
+        CommandType = System.Data.CommandType.StoredProcedure,
+        Connection = connection
+      };
+
+
+      connection.Open();
+
+      command.Parameters.AddWithValue("@CustomerId", customerId);
+
+      command.ExecuteNonQuery();
+
+
+      connection.Close();
+
+      return Ok();
+    }
+
   }
 }
