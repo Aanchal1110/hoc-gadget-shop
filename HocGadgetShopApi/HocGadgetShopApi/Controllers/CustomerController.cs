@@ -56,18 +56,18 @@ namespace HocGadgetShopApi.Controllers
         CommandType = System.Data.CommandType.StoredProcedure,
         Connection = connection
       };
-     
+
 
       connection.Open();
       List<CustomerDto> customers = new List<CustomerDto>();
 
-      using(SqlDataReader reader = command.ExecuteReader())
+      using (SqlDataReader reader = command.ExecuteReader())
       {
         while (reader.Read())
         {
           CustomerDto customerDto = new CustomerDto();
           customerDto.CustomerId = Convert.ToInt32(reader["CustomerId"]);
-          customerDto.FirstName = Convert.ToString(reader["FirstName"])??"";
+          customerDto.FirstName = Convert.ToString(reader["FirstName"]) ?? "";
           customerDto.LastName = Convert.ToString(reader["LastName"]) ?? "";
           customerDto.Phone = Convert.ToString(reader["Phone"]) ?? "";
           customerDto.Email = Convert.ToString(reader["Email"]) ?? "";
@@ -77,14 +77,14 @@ namespace HocGadgetShopApi.Controllers
 
         }
       }
-      
+
       connection.Close();
 
       return Ok(JsonConvert.SerializeObject(customers));
     }
 
 
-    [HttpDelete]
+    [HttpDelete("{customerId}")]
     public ActionResult DeleteCustomer(int customerId)
     {
       SqlConnection connection = new SqlConnection
@@ -113,5 +113,38 @@ namespace HocGadgetShopApi.Controllers
       return Ok();
     }
 
+
+    [HttpPut]
+    public ActionResult UpdateCustomerData(CustomerRequestDto customerRequestDto)
+    {
+      SqlConnection connection = new SqlConnection
+      {
+        ConnectionString = "Server=localhost;Database=gadgetshop;User Id=aanchal;Password=1105;TrustServerCertificate=True;"
+
+      };
+
+      SqlCommand command = new SqlCommand
+      {
+        CommandText = "sp_UpdateCustomerDetails",
+        CommandType = System.Data.CommandType.StoredProcedure,
+        Connection = connection
+      };
+
+
+      connection.Open();
+
+      command.Parameters.AddWithValue("@CustomerId", customerRequestDto.CustomerId);
+      command.Parameters.AddWithValue("@FirstName", customerRequestDto.FirstName);
+      command.Parameters.AddWithValue("@LastName", customerRequestDto.LastName);
+      command.Parameters.AddWithValue("@Email", customerRequestDto.Email);
+      command.Parameters.AddWithValue("@RegistrationDate", customerRequestDto.RegistrationDate);
+      command.Parameters.AddWithValue("@Phone", customerRequestDto.Phone);
+
+      command.ExecuteNonQuery();
+
+      connection.Close();
+
+      return Ok();
+    }
   }
 }
