@@ -14,6 +14,8 @@ import { first } from 'rxjs';
 })
 export class CustomerDialog {
 
+  disabledCustomerId=false;
+
   buttonText="Add";
 
   @Input() private customer1:any;
@@ -55,6 +57,7 @@ ngOnInit(){
   if(this.customer1 !=null){
     this.customer=this.customer1;
     this.buttonText="Update";
+    this.disabledCustomerId=true;
   }
 }
 
