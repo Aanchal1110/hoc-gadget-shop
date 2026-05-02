@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { email } from '@angular/forms/signals';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +13,8 @@ import { first } from 'rxjs';
   styleUrl: './customer-dialog.css',
 })
 export class CustomerDialog {
+  @Input() private customer1:any;
+
   httpClient=inject(HttpClient)
 
   modal=inject(NgbActiveModal)
@@ -44,6 +46,11 @@ this.httpClient.post(apiUrl, this.customer, httpOptions).subscribe({
     this.modal.close({event:"closed"});
 }
 });
+}
+ngOnInit(){
+  if(this.customer1 !=null){
+    this.customer=this.customer1;
+  }
 }
 
 }

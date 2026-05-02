@@ -41,7 +41,32 @@ export class Customer {
     )
 
   }
-  openConfirmDialog(){
-    this.modalService.open(DialogBox);
+  openConfirmDialog(customerId:any){
+    this.modalService.open(DialogBox).result.then(data=>{
+      if(data.event=="confirm"){
+        this.deletCustomer(customerId);
+      }
+    })
   }
+  deletCustomer(customerId:any){
+    let apiUrl="http://localhost:5113/api/Customer/";
+    this.httpClient.delete(apiUrl+customerId).subscribe(data=>{
+      this.getCustomerDetails();
+    });
+  
 }
+openEditDialogBox(customer:any){
+  const modalReference=this.modalService.open(CustomerDialog);
+  modalReference.componentInstance.customer1={
+    customerId:customer.CustomerId,
+    firstName:customer.FirstName,
+    lastName:customer.LastName,
+    email:customer.Email,
+    phone:customer.Phone,
+    registrationDate:customer.RegistrationDate
+   };
+  }
+
+
+}
+

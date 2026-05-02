@@ -28,8 +28,8 @@
         <td>{{ customer.Phone }}</td>
         <td>{{ customer.RegistrationDate }}</td>
         <td>
-          <button class="btn btn-primary btn-sm me-2">Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="openConfirmDialog()">Delete</button>
+          <button class="btn btn-primary btn-sm me-2" (click)="openEditDialogBox(customer)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="openConfirmDialog(customer.CustomerId)">Delete</button>
         </td>
       </tr>
     </tbody>
