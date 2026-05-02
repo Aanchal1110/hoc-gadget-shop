@@ -13,11 +13,15 @@ import { first } from 'rxjs';
   styleUrl: './customer-dialog.css',
 })
 export class CustomerDialog {
+
+  buttonText="Add";
+
   @Input() private customer1:any;
 
   httpClient=inject(HttpClient)
 
   modal=inject(NgbActiveModal)
+
 
   customer={
     customerId:"",
@@ -50,6 +54,7 @@ this.httpClient.post(apiUrl, this.customer, httpOptions).subscribe({
 ngOnInit(){
   if(this.customer1 !=null){
     this.customer=this.customer1;
+    this.buttonText="Update";
   }
 }
 
