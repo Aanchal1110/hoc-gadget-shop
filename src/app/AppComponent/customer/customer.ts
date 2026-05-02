@@ -65,8 +65,13 @@ openEditDialogBox(customer:any){
     phone:customer.Phone,
     registrationDate:customer.RegistrationDate
    };
+   modalReference.result.then(data=>{
+    if(data.event=="closed"){
+      this.getCustomerDetails();
+    }
   }
 
 
+);
 }
-
+}

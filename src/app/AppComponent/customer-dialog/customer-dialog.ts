@@ -43,6 +43,20 @@ headers:new HttpHeaders({
 
 })
 }
+if(this.disabledCustomerId==true){
+  this.httpClient.put(apiUrl, this.customer, httpOptions).subscribe({
+    next:v=>console.log(v),
+    error:e=>console.log(e),
+    complete:()=>{
+      alert("Customer details updated successfully: "+JSON.stringify(this.customer));
+      this.modal.close({event:"closed"});
+    }
+  });
+}
+else{
+
+
+
 this.httpClient.post(apiUrl, this.customer, httpOptions).subscribe({
   next:v=>console.log(v),
   error:e=>console.log(e),
@@ -52,7 +66,7 @@ this.httpClient.post(apiUrl, this.customer, httpOptions).subscribe({
     this.modal.close({event:"closed"});
 }
 });
-}
+}}
 ngOnInit(){
   if(this.customer1 !=null){
     this.customer=this.customer1;
